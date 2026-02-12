@@ -11,3 +11,16 @@
 %w[ATL DFW DEN ORD LAX CLT LAS JFK MCO MIA].each do |airport_code|
   Airport.find_or_create_by!(airport_code: airport_code)
 end
+puts "Airports seeded"
+
+10.times do
+  depart, arrive = Airport.all.sample(2)
+
+  Flight.find_or_create_by!(
+    departure_airport: depart,
+    arrival_airport: arrive,
+    start_datetime: Time.current + rand(1..30).days,
+    flight_duration: rand(60..360)
+  )
+end
+puts "10 random flights added"
