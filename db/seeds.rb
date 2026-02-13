@@ -13,7 +13,8 @@
 end
 puts "Airports seeded"
 
-50.times do
+num_flights = 1000
+num_flights.times do
   depart, arrive = Airport.all.sample(2)
 
   Flight.create!(
@@ -23,4 +24,4 @@ puts "Airports seeded"
     flight_duration: rand(60..360)
   )
 end
-puts "50 random flights added"
+puts "#{num_flights} random flights added"

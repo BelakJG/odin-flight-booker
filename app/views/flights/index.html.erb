@@ -18,9 +18,24 @@
 
         <div>
             <%= form.label :start_datetime, "Available Dates:" %>
-            <%= form.select @flight_dates, @flight_dates.map {|flight_date| flight_date.to_date}.uniq %>
+            <%= form.select :flight_date, options_for_select(@flight_dates) %>
         </div>
 
         <%= form.submit "Search Flights"%>
+    <% end %>
+</div>
+
+<div class="flight_selector">
+    <%= form_with(url: flights_path, method: :get) do |form| %>
+        <%= form.hidden_field :passengers, value: params[:passengers] %>
+        <% @flights.each do |flight| %>
+            <div class="flight_<%= flight.id %>">
+                <%= form.radio_button :flight_id, flight.id%>
+                <%= form.label "flight_id_#{flight.id}", 
+                "Flight #{flight.id} Leaving #{flight.departure_airport.airport_code} 
+                going to #{flight.arrival_airport.airport_code} 
+                lasting #{flight.flight_duration} minutes" %>
+            </div>
+        <% end %>
     <% end %>
 </div>
