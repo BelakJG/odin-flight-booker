@@ -1,0 +1,26 @@
+<div class="flight_search">
+    <%= form_with(url: flights_path, method: :get) do |form| %>
+
+        <div>
+            <%= form.label :departure_airport_id, "Departure Airports:" %>
+            <%= form.collection_select :departure_airport_id, Airport.all, :id, :airport_code %>
+        </div>
+        
+        <div>
+            <%= form.label :arrival_airport_id, "Arrival Airport:" %>
+            <%= form.collection_select :arrival_airport_id, Airport.all, :id, :airport_code %>
+        </div>
+
+        <div>
+            <%= form.label :passengers, "Number of Passengers:" %>
+            <%= form.select :passengers, ((1..4).map {|i| [i,i]})%>
+        </div>
+
+        <div>
+            <%= form.label :start_datetime, "Available Dates:" %>
+            <%= form.select @flight_dates, @flight_dates.map {|flight_date| flight_date.to_date}.uniq %>
+        </div>
+
+        <%= form.submit "Search Flights"%>
+    <% end %>
+</div>

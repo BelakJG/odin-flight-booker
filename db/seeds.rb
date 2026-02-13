@@ -13,14 +13,14 @@
 end
 puts "Airports seeded"
 
-10.times do
+50.times do
   depart, arrive = Airport.all.sample(2)
 
-  Flight.find_or_create_by!(
+  Flight.create!(
     departure_airport: depart,
     arrival_airport: arrive,
-    start_datetime: Time.current + rand(1..30).days,
+    start_datetime: (Time.current + rand(1..30).days),
     flight_duration: rand(60..360)
   )
 end
-puts "10 random flights added"
+puts "50 random flights added"
