@@ -1,0 +1,15 @@
+<h1>Enter Booking Details</h1>
+<%= debug params %>
+<p><%= @booking.attributes %></p>
+<%= form_with model: @booking do |form| %>
+    <%= form.hidden_field :flight_id, value: params[:flight_id] %>
+    <%= form.fields_for :passengers do |passenger_form| %>
+        <div class="passenger-form">
+            <%= passenger_form.label :name %>
+            <%= passenger_form.text_field :name %>
+            <%= passenger_form.label :email %>
+            <%= passenger_form.email_field :email %>
+        </div>
+    <% end %>
+    <%= form.submit "Submit Booking"%>
+<% end %>
