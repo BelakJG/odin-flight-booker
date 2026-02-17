@@ -12,8 +12,8 @@
         </div>
 
         <div>
-            <%= form.label :passengers, "Number of Passengers:" %>
-            <%= form.select :passengers, ((1..4).map {|i| [i,i]})%>
+            <%= form.label :num_passengers, "Number of Passengers:" %>
+            <%= form.select :num_passengers, ((1..4).map {|i| [i,i]})%>
         </div>
 
         <div>
@@ -27,8 +27,8 @@
 <p></p>
 <% unless @flights.empty? %>
     <div class="flight_selector">
-        <%= form_with(url: flights_path, method: :get) do |form| %>
-            <%= form.hidden_field :passengers, value: params[:passengers] %>
+        <%= form_with(url: new_booking_path, method: :get) do |form| %>
+            <%= form.hidden_field :num_passengers, value: params[:num_passengers] %>
             <% @flights.each do |flight| %>
                 <div class="flight_<%= flight.id %>">
                     <%= form.radio_button :flight_id, flight.id%>
