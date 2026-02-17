@@ -1,1 +1,14 @@
-<%= debug @booking %>
+<h1>Booking Information</h1>
+<h2><%= "Flight #{@flight.id}
+    leaving #{@flight.departure_airport.airport_code}
+    going to #{@flight.arrival_airport.airport_code}
+    on #{@flight.start_datetime.to_date}" %>
+</h2>
+<h3>Passengers</h3>
+<% @passengers.each do |passenger| %>
+    <div class="passenger-info">
+        Name: <%= passenger.name %>
+        Email: <%= passenger.email %>
+    </div>
+<% end %>
+<%= link_to "Home", root_path %>
