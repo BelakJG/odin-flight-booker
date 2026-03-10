@@ -1,0 +1,9 @@
+<h1>Welcome to example.com, <%= @passenger.name %></h1>
+<p>
+  You have successfully booked your flight,
+  your booking id is <%= @booking.id %> on <%= @flight.start_datetime %>
+</p>
+<p>
+  To view your booking information, just follow this link: <%= link_to 'booking', @booking %>.
+</p>
+<p>Thanks for flying with us and have a great day!</p>

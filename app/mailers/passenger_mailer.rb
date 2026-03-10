@@ -3,11 +3,10 @@ class PassengerMailer < ApplicationMailer
 
   def confirm_email
     @booking = params[:booking]
+    @passenger = params[:passenger]
     @flight = @booking.flight
-    @passengers = @booking.passengers
     @url = "http://example.com/login"
-    @passengers.each do |passenger|
-      mail(to: passenger.email, subject: "Your flight is booked")
-    end
+
+    mail(to: @passenger.email, subject: "Your flight is booked")
   end
 end
